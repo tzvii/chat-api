@@ -1,0 +1,22 @@
+lib-cov
+*.seed
+*.log
+*.csv
+*.dat
+*.out
+*.pid
+*.gz
+*.zip
+
+pids
+logs
+results
+
+.vscode
+node_modules
+lib
+npm-debug.log
+
+# project-specific files
+.env
+.idea
