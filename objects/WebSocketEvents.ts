@@ -16,5 +16,5 @@ export type DisconnectEvent =
 export type SetNameEvent =
 {
     requestContext: { connectionId: string, routeKey: RouteKey };
-    body: { name: string };
+    body: { username: string };
 };
