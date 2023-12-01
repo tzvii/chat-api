@@ -1,22 +1,36 @@
 # Chat API
-A WebSocket based chat API that uses AWS for cloud infrastructure
+A WebSocket-based chat API leveraging AWS for cloud infrastructure. The API in this project is stored on a Lambda, AWS API Gateway was used to set up the WebSocket, and DynamoDB was employed for data storage.
 
-## How it's used:
-* First a user should connect to the WebSocket API. One way of doing this is by installing the `wscat` package from `npm` -- a WebSocket URL will be provided upon request.
-* Once connected, each request must be sent containing a `routeKey`. This `routeKey` property will be used to trigger the appropriate processing. Depending on which route is selected, other properties will be required for successful processing.
-* Example request: `{ "action": "setName", "username": "bob" }`
-<br><br>
+## Requirements:
+- Node.js (Install from [https://nodejs.org/](https://nodejs.org/))
 
-**Chat API routes:**
+## How to Use:
+1. Connect to the WebSocket API by installing the `wscat` package from `npm`. A WebSocket URL will be provided upon request.
+   ```bash
+   npm install -g wscat
+   ```
+   ```bash
+   wscat -c <WebSocket_URL>
+   ```
 
-***setName({ action, username }):*** Initial request user must make to activate their profile.
+2. Once connected, send requests with a `routeKey` property to trigger specific processing. Depending on the selected route, additional properties may be required for successful processing.
+   ```json
+   { "action": "setName", "username": "bob" }
+   ```
+
+**Chat API Routes:**
+
+***setName({ action, username }):*** 
+Activate a user's profile with the initial request.
 - action: "`setName`"
-- username: username desired -- must be unique
+- username: Desired unique username
 
-***sendMessage({ action, to, message }):*** Send a message to desired user.
+***sendMessage({ action, to, message }):*** 
+Send a message to a specified user.
 - action: "`sendMessage`"
-- to: the receiver's username
-- message: desired message
+- to: Receiver's username
+- message: Desired message
 
-***listUsers({ action }):*** List all active users.
+***listUsers({ action }):*** 
+List all active users.
 - action: "`listUsers`"
